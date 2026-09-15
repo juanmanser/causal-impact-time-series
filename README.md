@@ -36,7 +36,7 @@ Las métricas tradicionales suelen incurrir en sesgos de atribución. Este proye
 
 ### 1. En Google Colab (Recomendado)
 Puedes ejecutar directamente el cuaderno interactivo en Google Colab:
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/juanmanser/causal-impact-time-series/blob/main/notebooks/lift_time_series_multi_meth_py.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/juanmanser/causal-impact-time-series/blob/main/lift_time_series_multi_meth_py.ipynb)
 
 ### 2. Entorno Local
 ```bash
