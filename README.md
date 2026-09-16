@@ -45,3 +45,37 @@ Corrida de referencia sobre panel sintético: 365 días pre-campaña, 28 días p
 ## 🎯 Selección Dinámica del Modelo
 
 El notebook incluye una función `select_best_model_dynamically` que **no hardcodea ninguna preferencia por método**. En su lugar, construye un score compuesto:
+
+score = Pre-MAPE + 10 · |Pre-Bias| + 0.5 · Desviación vs Consenso (%)
+
+
+- **Filtros duros**: descarta modelos con `Pre-MAPE > 3.0%` o `|Pre-Bias| > 1.0`.
+- **Penalización por consenso**: castiga alejarse de la mediana del efecto total entre métodos.
+- **Penalización por convergencia**: si PyMC no converge, se suma +5 al score.
+- **Fallback seguro**: si ningún modelo pasa los filtros, se elige el de menor score sin filtro.
+
+En esta corrida, el modelo seleccionado fue **BSTS-lite (OLS)** con score = 0.782, impulsado por su MAPE bajo (0.67%) y bias nulo. Si el objetivo del análisis fuera reportar incertidumbre formal, PyMC queda segundo con el mismo MAPE efectivo y un IC bayesiano ya calculado.
+
+---
+
+## 🚀 Cómo Ejecutar este Proyecto
+
+### 1. En Google Colab (Recomendado)
+
+Puedes ejecutar directamente el cuaderno interactivo en Google Colab:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/juanmanser/causal-impact-time-series/blob/main/lift_time_series_multi_meth_py.ipynb)
+
+### 2. Entorno Local
+
+```bash
+# Clonar repositorio
+git clone https://github.com/juanmanser/causal-impact-time-series.git
+cd causal-impact-time-series
+
+# Crear y activar entorno virtual
+python -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+
+# Instalar dependencias
+pip install -r requirements.txt
